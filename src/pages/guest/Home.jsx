@@ -4,6 +4,7 @@ import PageLayout from "../../layouts/PageLayout";
 import Hero from "../../components/Hero";
 import CardSurah from "../../components/CardSurah";
 import { useGetAllSurahQuery } from "../../services/quran";
+import LoadingSpinner from "../../components/Spinner";
 import useTitle from "../../utils/useTitle";
 const HomePage = () => {
   const { data, error, isLoading } = useGetAllSurahQuery();
@@ -65,7 +66,7 @@ const HomePage = () => {
           {error ? (
             <>Please refresh</>
           ) : isLoading ? (
-            <>Loading</>
+            <><LoadingSpinner/></>
           ) : (
             <>
               {search(data).map((surah) => (

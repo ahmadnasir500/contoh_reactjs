@@ -42,10 +42,10 @@ root.render(
                 </ProtectedComponent>
               }
             />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/create" element={<AddEditBlog />} />
-            <Route path="/update/:id" element={<AddEditBlog />} />
-            <Route path="/detail/:id" element={<DetailBlog />} />
+            <Route path="/blog" element={<ProtectedComponent><Blog /></ProtectedComponent>} />
+            <Route path="/create" element={<ProtectedComponent><AddEditBlog /></ProtectedComponent>} />
+            <Route path="/update/:id" element={<ProtectedComponent><AddEditBlog /></ProtectedComponent>} />
+            <Route path="/detail/:id" element={<ProtectedComponent><DetailBlog /></ProtectedComponent>} />
           </Route>
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />

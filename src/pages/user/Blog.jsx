@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import useTitle from "../../utils/useTitle";
 import { Link } from "react-router-dom";
 import { useDeleteBlogMutation, useGetBlogsQuery } from "../../services/blog";
 import {
@@ -14,6 +15,30 @@ import LoadingSpinner from "../../components/Spinner";
 
 const Blog = () => {
   const { data, isLoading, isError, error } = useGetBlogsQuery();
+  const [query, setQuery] = useState("");
+  const [f] = useState(["title"]);
+  const [category, setCategory] = useState([""]);
+  useTitle("Blog");
+console.log(data);
+  const search = (data) => {
+    return data.filter((blog) => {
+      if (blog.category == category) {
+        return f.some((title) => {
+          return (
+            blog.title.toString().toLowerCase().indexOf(query.toLowerCase()) >
+            -1
+          );
+        });
+      } else if (category == "") {
+        return f.some((title) => {
+          return (
+            blog.title.toString().toLowerCase().indexOf(query.toLowerCase()) >
+            -1
+          );
+        });
+      }
+    });
+  };
   const [deleteBlog] = useDeleteBlogMutation();
   useEffect(() => {
     isError && <>Error</>;
@@ -44,13 +69,15 @@ const Blog = () => {
         </p>
         <Form.Control
           type="text"
-          placeholder="Search blog"
+          placeholder="Search title blog"
           size="lg"
-          className="rounded-quran input-background border-quran"
+          className="rounded-quran input-background border-quran mb-3"
+          value={query}
+              onChange={(e) => setQuery(e.target.value)}
         />
       </div>
       <Row>
-        {data?.map((item, index) =>
+        {search(data)?.map((item, index) =>
           index == 0 ? (
             <Col sm={12} className="mb-3">
               <Row>
