@@ -19,14 +19,15 @@ const Blog = () => {
   const [f] = useState(["title"]);
   const [category, setCategory] = useState([""]);
   useTitle("Blog");
-console.log(data);
   const search = (data) => {
-    return data.filter((blog) => {
+    const strDescending = [...data].sort((a, b) => b.timestamp - a.timestamp);
+    return strDescending.filter((blog) => {
       if (blog.category == category) {
         return f.some((title) => {
           return (
             blog.title.toString().toLowerCase().indexOf(query.toLowerCase()) >
             -1
+  
           );
         });
       } else if (category == "") {
@@ -34,7 +35,8 @@ console.log(data);
           return (
             blog.title.toString().toLowerCase().indexOf(query.toLowerCase()) >
             -1
-          );
+            
+        );
         });
       }
     });

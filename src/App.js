@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 
-import { useLocation, Outlet} from "react-router-dom";
+import { useLocation, Outlet } from "react-router-dom";
 import Header from "./components/templates/Header";
 import Footer from "./components/templates/Footer";
 import ButtonToTop from "./components/ButtonToTop";
@@ -10,17 +10,25 @@ const App = () => {
   const location = useLocation();
   useEffect(() => {
     if (!location.hash) {
-      window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
   }, [location]);
   useEffect(() => {
+    const navHeader = document.getElementById("nav-header");
+    const btnToTop = document.getElementById("btn-to-top")
     const handleScroll = (event) => {
-      window.scrollY > 50 ? document.getElementById("nav-header").classList.add("bg-quran") : document.getElementById("nav-header").classList.remove("bg-quran")
-      window.scrollY > 800 ? document.getElementById("btn-to-top").style.display ="block" : document.getElementById("btn-to-top").style.display ="none"
+      if (typeof navHeader !== null && navHeader !== "undefined") {
+        window.scrollY > 50
+          ? navHeader.classList.add("bg-quran")
+          : navHeader.classList.remove("bg-quran");
+      }
+      window.scrollY > 800
+        ? btnToTop.style.display = "block"
+        : btnToTop.style.display = "none"
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
   return (
@@ -31,11 +39,11 @@ const App = () => {
       >
         <Header />
         <Outlet />
-        <ButtonToTop/>
+        <ButtonToTop />
         <Footer />
       </ThemeProvider>
     </>
   );
-}
+};
 
 export default App;

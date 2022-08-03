@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { storage } from "../../apis/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import {
-  useAddbBlogMutation,
+  useAddBlogMutation,
   useGetSingleBlogQuery,
   useUpdateBlogMutation,
 } from "../../services/blog";
@@ -15,7 +15,7 @@ const AddEditBlog = () => {
   const [errors, setErrors] = useState({});
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(null);
-  const [addBlog] = useAddbBlogMutation();
+  const [addBlog] = useAddBlogMutation();
   const navigate = useNavigate();
   const { id } = useParams();
   const { data: blog } = useGetSingleBlogQuery(id ? id : skipToken);
@@ -49,10 +49,6 @@ const AddEditBlog = () => {
       newErrors.category = "Please type category";
     return newErrors;
   };
-
-  
-  
-
   useEffect(() => {
     const uploadFile = () => {
       const storageRef = ref(storage, 'images/' + nameTime+file.name);
@@ -95,7 +91,6 @@ const AddEditBlog = () => {
       setErrors(newErrors);
     } else {
       if (!id) {
-        console.log('Data ini yang akan di submit:', form)
         await addBlog(form);
         navigate("/blog");
       } else {

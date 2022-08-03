@@ -11,47 +11,47 @@ import {
 } from "firebase/firestore";
 import { db } from "../apis/firestore";
 
-export const reqBlog = createApi({
-  reducerPath: "reqBlog",
+export const reqBookmark = createApi({
+  reducerPath: "reqBookmark",
   baseQuery: fakeBaseQuery(),
-  tagTypes: ["blogs"],
+  tagTypes: ["bookmark"],
   endpoints: (buidler) => ({
-    getBlogs: buidler.query({
+    getBookmark: buidler.query({
       async queryFn() {
         try {
-          const blogRef = collection(db, "blogs");
-          const querySnapshot = await getDocs(blogRef);
-          let blogs = [];
+          const bookmarkRef = collection(db, "bookmark");
+          const querySnapshot = await getDocs(bookmarkRef);
+          let bookmark = [];
           querySnapshot?.forEach((doc) => [
-            blogs.push({
+            bookmark.push({
               id: doc.id,
               ...doc.data(),
             }),
           ]);
-          return { data: blogs };
+          return { data: bookmark };
         } catch (err) {
           return { error: err };
         }
       },
-      providesTags: ["blogs"],
+      providesTags: ["bookmark"],
     }),
-    getSingleBlog: buidler.query({
+    getSingleBookmark: buidler.query({
       async queryFn(id) {
         try {
-          const docRef = doc(db, "blogs", id);
+          const docRef = doc(db, "bookmark", id);
           const snapshot = await getDoc(docRef);
           return { data: snapshot.data() };
         } catch (err) {
           return { error: err };
         }
       },
-      providesTags: ["blogs"],
+      providesTags: ["bookmark"],
     }),
-    addBlog: buidler.mutation({
-      async queryFn(data) {
+    addBookmark: buidler.mutation({
+      async queryFn(form) {
         try {
-          await addDoc(collection(db, "blogs"), {
-            ...data,
+          await addDoc(collection(db, "bookmark"), {
+            ...form,
             timestamp: serverTimestamp(),
           });
         } catch (err) {
@@ -59,23 +59,23 @@ export const reqBlog = createApi({
         }
         return { data: "ok" };
       },
-      invalidatesTags: ["blogs"],
+      invalidatesTags: ["bookmark"],
     }),
-    deleteBlog: buidler.mutation({
+    deleteBookmark: buidler.mutation({
       async queryFn(id) {
         try {
-          await deleteDoc(doc(db, "blogs", id));
+          await deleteDoc(doc(db, "bookmark", id));
           return { data: "deleted" };
         } catch (err) {
           return { error: err };
         }
       },
-      invalidatesTags: ["blogs"],
+      invalidatesTags: ["bookmark"],
     }),
-    updateBlog: buidler.mutation({
+    updateBookmark: buidler.mutation({
       async queryFn({ id, form }) {
         try {
-          await updateDoc(doc(db, "blogs", id), {
+          await updateDoc(doc(db, "bookmark", id), {
             ...form,
             timestamp: serverTimestamp(),
           });
@@ -84,15 +84,15 @@ export const reqBlog = createApi({
           return { error: err };
         }
       },
-      invalidatesTags: ["blogs"],
+      invalidatesTags: ["bookmark"],
     }),
   }),
 });
 
 export const {
-  useGetBlogsQuery,
-  useAddBlogMutation,
-  useDeleteBlogMutation,
-  useGetSingleBlogQuery,
-  useUpdateBlogMutation,
-} = reqBlog;
+  useGetBookmarkQuery,
+  useAddBookmarkMutation,
+  useDeleteBookmarkMutation,
+  useGetSingleBookmarkQuery,
+  useUpdateBookmarkMutation,
+} = reqBookmark;

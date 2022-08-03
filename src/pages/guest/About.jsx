@@ -20,15 +20,10 @@ const AboutPage = () => {
               >
                 DIGITALENT KOMINFO.
               </a>{" "}
-              Jika dalam pembuatan content ada dapat beberapa kesalahan mohon
-              dimaafkan
-            </p>
-            <p>
-              Thanks To :
-              
+              Jika dalam pembuatan aplikasi dan content terdapat beberapa kesalahan mohon
+              dimaafkan yang sebesar-besarnya. Thanks to :
             </p>
             <ul>
-                <li>Allah Swt</li>
                 <li>
                   Kak Wendy terimakasih ya kak sudah diajarkan ilmu reactjsnya,
                   semoga menjadi amal jariyah. #Withered Flowers #MentorREA2A

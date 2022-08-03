@@ -1,8 +1,9 @@
-import React from "react";
-import { Container, Card, Stack, Button } from "react-bootstrap";
+import React, {useState} from "react";
+import { Container, Card, Stack, Button, Toast, ToastContainer  } from "react-bootstrap";
 import ReactAudioPlayer from "react-audio-player";
 import SectionAyahs from "./SectionAyahs";
 const DetailSurah = (props) => {
+  const [show, setShow] = useState(false);
   const ayahs = props.surah.ayahs;
   return (
     <Container className="mt-100">
@@ -24,7 +25,11 @@ const DetailSurah = (props) => {
               Revelation : {props.surah.revelation}
             </li>
           </ul>
-          <Stack  direction="horizontal" gap={2} className="justify-content-center">
+          <Stack
+            direction="horizontal"
+            gap={2}
+            className="justify-content-center"
+          >
             <Button size="sm" className="bg-quran" variant="secondary">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +76,14 @@ const DetailSurah = (props) => {
           </Card.Body>
         </Card>
 
-        {ayahs.map((item, index) => [<SectionAyahs key={item} ayah={item} />])}
+        {ayahs.map((item, index) => [
+          <SectionAyahs
+            key={item}
+            ayah={item}
+            numberSurah={props.surah.number}
+            onToast={setShow}
+          />,
+        ])}
       </div>
       <div className="sticky-footer">
         <ReactAudioPlayer
@@ -80,8 +92,23 @@ const DetailSurah = (props) => {
           className="w-100 bg-quran"
         />
       </div>
+      <div className="position-fixed top-0 end-0 p-3" style={{ zIndex: 9001 }}>
+        <div role="alert" aria-live="assertive" aria-atomic="true">
+          <Toast
+            onClose={() => setShow(false)}
+            show={show}
+            delay={3000}
+            autohide className="bg-primary"
+          >
+            <Toast.Body className="text-white">
+              Bookmarks saved
+            </Toast.Body>
+          </Toast>
+        </div>
+      </div>
     </Container>
   );
 };
 
 export default DetailSurah;
+	
