@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from "react";
 
-function App() {
+import { useLocation, Outlet} from "react-router-dom";
+import Header from "./components/templates/Header";
+import Footer from "./components/templates/Footer";
+import ButtonToTop from "./components/ButtonToTop";
+import ThemeProvider from "react-bootstrap/ThemeProvider";
+
+const App = () => {
+  const location = useLocation();
+  useEffect(() => {
+    if (!location.hash) {
+      window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    }
+  }, [location]);
+  useEffect(() => {
+    const handleScroll = (event) => {
+      window.scrollY > 50 ? document.getElementById("nav-header").classList.add("bg-quran") : document.getElementById("nav-header").classList.remove("bg-quran")
+      window.scrollY > 800 ? document.getElementById("btn-to-top").style.display ="block" : document.getElementById("btn-to-top").style.display ="none"
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ThemeProvider
+        breakpoints={["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}
+        minBreakpoint="xxs"
+      >
+        <Header />
+        <Outlet />
+        <ButtonToTop/>
+        <Footer />
+      </ThemeProvider>
+    </>
   );
 }
 
