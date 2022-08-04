@@ -50,7 +50,7 @@ const HomePage = () => {
             />
             <Form.Select
               aria-label="relevation"
-              className="input-background border-quran rounded-quran"
+              className="input-background border-quran rounded-quran text-white"
               onChange={(e) => {
                 setRelevation(e.target.value);
               }}

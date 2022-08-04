@@ -4,11 +4,10 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import { Container, Button, Card, Form, Row, Col } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, updateUserProfile } from "../../services/auth";
-import { getAuth, updateProfile } from "firebase/auth";
+import { auth} from "../../services/auth";
+import { updateProfile } from "firebase/auth";
 
 const DetailUser = () => {
-  const authUser = getAuth();
   const nameTime = new Date().getTime();
   const [user] = useAuthState(auth);
   const [form, setForm] = useState({});
@@ -16,12 +15,11 @@ const DetailUser = () => {
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(null);
   const navigate = useNavigate();
-  const currentUser = user.auth.currentUser;
   useEffect(() => {
     if (user) {
       setForm({ ...form });
     }
-  }, [user]);
+  }, [form]);
 
   const setField = (field, value) => {
     setForm({

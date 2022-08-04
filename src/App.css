@@ -204,19 +204,19 @@ body {
 }
 
 .green-hero {
-  background: #21d4fd;
-  width: 400px;
-  height: 400px;
+  background: #0070f3;
+  width: 600px;
+  height: 600px;
   z-index: -1;
-  left: 30%;
-  top: 5%;
+  left: 50%;
+  top: 30%;
   border-radius: 100%;
 }
 
 .shape {
   position: absolute;
-  -webkit-filter: blur(20px);
-  filter: blur(20px);
+  -webkit-filter: blur(40px);
+  filter: blur(40px);
   mix-blend-mode: normal;
   opacity: 0.4;
   -webkit-animation: random 7s infinite;
@@ -224,23 +224,23 @@ body {
 }
 
 .purple-hero {
-  width: 500px;
-  height: 500px;
+  width: 700px;
+  height: 700px;
   z-index: -2;
   left: 40%;
   top: 10%;
-  background: #b721ff;
+  background: #7928ca;
   border-radius: 100%;
   animation-direction: reverse;
 }
 
 .orange-hero {
-  width: 600px;
-  height: 600px;
+  width: 800px;
+  height: 800px;
   z-index: -3;
-  left: 50%;
-  top: 15%;
-  background: hsla(340, 100%, 76%, 1);
+  left: 20%;
+  top: 20%;
+  background: #ff0080;
   border-radius: 100%;
   -webkit-animation-delay: 3s;
   animation-delay: 3s;
