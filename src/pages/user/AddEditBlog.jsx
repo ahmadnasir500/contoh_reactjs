@@ -199,11 +199,9 @@ const AddEditBlog = () => {
                 <Form.Group controlId="img" className="mb-3">
                   <Form.Label>Image Blog</Form.Label>
                   <Form.Control className="input-background text-white border-quran"
-                    type="file"
-                    disabled={id ? true : false}
+                    type="file" required
                     onChange={(e) => setFile(e.target.files[0])}
                   />
-                  <small className="text-danger">{id && 'Image Blog disabled to update'}</small>
                 </Form.Group>
               </Row>
               <div className="d-grid gap-2">

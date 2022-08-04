@@ -42,7 +42,7 @@ const Header = () => {
               id="input-group-dropdown"
               className="dropstart"
             >
-              <Dropdown.Item href="#" className="text-white">
+              <Dropdown.Item as={Link} to="/user" className="text-white">
                 My Profil
               </Dropdown.Item>
               <Dropdown.Item href="#" className="text-white">

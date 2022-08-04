@@ -72,20 +72,6 @@ export const reqBookmark = createApi({
       },
       invalidatesTags: ["bookmark"],
     }),
-    updateBookmark: buidler.mutation({
-      async queryFn({ id, form }) {
-        try {
-          await updateDoc(doc(db, "bookmark", id), {
-            ...form,
-            timestamp: serverTimestamp(),
-          });
-          return { form: "updated" };
-        } catch (err) {
-          return { error: err };
-        }
-      },
-      invalidatesTags: ["bookmark"],
-    }),
   }),
 });
 
@@ -94,5 +80,4 @@ export const {
   useAddBookmarkMutation,
   useDeleteBookmarkMutation,
   useGetSingleBookmarkQuery,
-  useUpdateBookmarkMutation,
 } = reqBookmark;

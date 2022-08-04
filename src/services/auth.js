@@ -8,6 +8,7 @@ import {
   GoogleAuthProvider,
   GithubAuthProvider,
   signInWithPopup,
+  updateProfile
 } from "firebase/auth";
 const auth = getAuth(app);
 const providerGoogle = new GoogleAuthProvider();
@@ -79,6 +80,15 @@ const loginByGithub = async () => {
     return errorMessage
   }
 };
+const updateUserProfile = async (currentUser, form) => {
+  try {
+    const response = await updateProfile(currentUser, form)
+    console.log(response)
+  } catch (error) {
+    const errorMessage = error.message;
+    return errorMessage
+  }
+}
 
 export {
   auth,
@@ -88,4 +98,5 @@ export {
   logoutFromApp,
   loginByGoogle,
   loginByGithub,
+  updateUserProfile
 };

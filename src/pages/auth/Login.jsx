@@ -48,8 +48,11 @@ const LoginPage = () => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
-        const response = await loginUserWithEmailAndPassword(form.email, form.password);
-        setRes(response)
+      const response = await loginUserWithEmailAndPassword(
+        form.email,
+        form.password
+      );
+      setRes(response);
     }
   };
   useEffect(() => {
@@ -78,7 +81,7 @@ const LoginPage = () => {
           Log in into Moon Stars
         </h3>
         <p className="text-center">Welcome back! Please enter your detail</p>
-        <small>{res? '':res}</small>
+        <small>{res ? "" : res}</small>
         <div className="mx-auto col-lg-4">
           <Stack direction="horizontal" gap={2}>
             <Button className="btn-quran w-50" onClick={handleLoginByGoogle}>
@@ -105,7 +108,7 @@ const LoginPage = () => {
               </svg>
             </Button>
           </Stack>
-          <hr/>
+          <hr />
           {res.length > 0 ? res : ""}
           <Form noValidate onSubmit={handleSubmit} className="mb-3">
             <Row className="mb-3">

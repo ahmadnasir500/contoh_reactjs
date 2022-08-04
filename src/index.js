@@ -7,6 +7,7 @@ import RegisterPage from "./pages/auth/Register";
 import ResetPasswordPage from "./pages/auth/ResetPassword";
 import HomePage from "./pages/guest/Home";
 import AboutPage from "./pages/guest/About";
+import DetailUser from "./pages/user/DetailUser";
 import DetailSurahPage from "./pages/user/DetailSurah";
 import CareerPage from "./pages/user/Career";
 import Blog from "./pages/user/Blog";
@@ -43,6 +44,8 @@ root.render(
                 </ProtectedComponent>
               }
             />
+            
+            <Route path="/user" element={<ProtectedComponent><DetailUser /></ProtectedComponent>} />
             <Route path="/blog" element={<ProtectedComponent><Blog /></ProtectedComponent>} />
             <Route path="/create" element={<ProtectedComponent><AddEditBlog /></ProtectedComponent>} />
             <Route path="/update/:id" element={<ProtectedComponent><AddEditBlog /></ProtectedComponent>} />
