@@ -11,7 +11,7 @@ const Hero = () => {
       
       <Row>
         <Col lg={6}>
-          <h1 className="display-4 fw-bold gradient-text">
+          <h1 className="display-4 fw-bold text-white">
             Sudahkah kamu membaca Al Quran hari ini?
           </h1>
           <p>
