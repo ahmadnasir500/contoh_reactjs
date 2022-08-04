@@ -4,6 +4,7 @@ import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/auth/Login";
 import RegisterPage from "./pages/auth/Register";
+import ResetPasswordPage from "./pages/auth/ResetPassword";
 import HomePage from "./pages/guest/Home";
 import AboutPage from "./pages/guest/About";
 import DetailSurahPage from "./pages/user/DetailSurah";
@@ -49,6 +50,7 @@ root.render(
           </Route>
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
+          <Route path="reset-password" element={<ResetPasswordPage />} />
         </Routes>
       </BrowserRouter>
     </Provider>

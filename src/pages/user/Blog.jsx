@@ -73,7 +73,7 @@ const Blog = () => {
           type="text"
           placeholder="Search title blog"
           size="lg"
-          className="rounded-quran input-background border-quran mb-3"
+          className="rounded-quran input-background border-quran mb-3 text-white"
           value={query}
               onChange={(e) => setQuery(e.target.value)}
         />
@@ -81,7 +81,7 @@ const Blog = () => {
       <Row>
         {search(data)?.map((item, index) =>
           index == 0 ? (
-            <Col sm={12} className="mb-3">
+            <Col sm={12} className="mb-3" key={item.id}>
               <Row>
                 <Col sm={6} className="mb-3">
                   <div className="p-3">
@@ -126,7 +126,7 @@ const Blog = () => {
               </Row>
             </Col>
           ) : (
-            <Col sm={4} className="mb-3">
+            <Col sm={4} className="mb-3" key={item.id}>
               
               <Card className="h-100 border-0 bg-quran">
                 <Card.Body>

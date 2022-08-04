@@ -7,7 +7,6 @@ import { useGetSingleBlogQuery } from "../../services/blog";
 const DetailBlog = () => {
   const { id } = useParams();
   const { data, isError, error } = useGetSingleBlogQuery(id ? id : skipToken);
-  console.log(data);
   useEffect(() => {
     isError && <>Error from blog detail</>;
   }, [isError]);

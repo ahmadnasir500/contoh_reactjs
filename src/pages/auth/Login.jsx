@@ -11,6 +11,7 @@ import { Container, Form, Row, Col, Button, Stack } from "react-bootstrap";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [res, setRes] = useState({});
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const setField = (field, value) => {
@@ -41,13 +42,14 @@ const LoginPage = () => {
   const handleLoginByGithub = () => {
     loginByGithub();
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const newErrors = findFormErrors();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
-      loginUserWithEmailAndPassword(form.email, form.password);
+        const response = await loginUserWithEmailAndPassword(form.email, form.password);
+        setRes(response)
     }
   };
   useEffect(() => {
@@ -76,6 +78,7 @@ const LoginPage = () => {
           Log in into Moon Stars
         </h3>
         <p className="text-center">Welcome back! Please enter your detail</p>
+        <small>{res? '':res}</small>
         <div className="mx-auto col-lg-4">
           <Stack direction="horizontal" gap={2}>
             <Button className="btn-quran w-50" onClick={handleLoginByGoogle}>
@@ -103,7 +106,7 @@ const LoginPage = () => {
             </Button>
           </Stack>
           <hr/>
-          {error ? error.code : ""}
+          {res.length > 0 ? res : ""}
           <Form noValidate onSubmit={handleSubmit} className="mb-3">
             <Row className="mb-3">
               <Form.Group as={Col} lg="12" controlId="email" className="mb-3">
@@ -112,7 +115,7 @@ const LoginPage = () => {
                   required
                   type="email"
                   placeholder="Type your email address"
-                  className="rounded-quran input-background border-quran"
+                  className="rounded-quran input-background border-quran text-white"
                   onChange={(e) => setField("email", e.target.value)}
                   isInvalid={!!errors.email}
                 />
@@ -137,7 +140,7 @@ const LoginPage = () => {
                   required
                   type="password"
                   placeholder="Type your password"
-                  className="rounded-quran input-background border-quran"
+                  className="rounded-quran input-background border-quran text-white"
                   onChange={(e) => setField("password", e.target.value)}
                   isInvalid={!!errors.password}
                 />

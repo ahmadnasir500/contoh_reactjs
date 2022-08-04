@@ -13,45 +13,42 @@ const auth = getAuth(app);
 const providerGoogle = new GoogleAuthProvider();
 const providerGithub = new GithubAuthProvider();
 const registerUserWithEmailAndPassword = async (email, password) => {
-  console.log(email, password);
   try {
     const response = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
-    console.log(response.user);
+    return response.user
   } catch (error) {
-    console.log("error code auth", error.code);
-    console.log("error message auth", error.message);
+    return error.message
   }
 };
 
 const loginUserWithEmailAndPassword = async (email, password) => {
   try {
-    const response = await signInWithEmailAndPassword(auth, email, password);
-    console.log(response.user);
+    const response = await signInWithEmailAndPassword(auth, email, password);    
+    return response.user
   } catch (error) {
-    console.log("error code auth", error.code);
-    console.log("error message auth", error.message);
+    return error.message
   }
 };
 
 const resetPassword = async (email) => {
   try {
-    await sendPasswordResetEmail(auth, email);
-    console.log("Link Reset sent");
+    const response = await sendPasswordResetEmail(auth, email);
+    return response
   } catch (error) {
-    console.log("error code auth", error.code);
-    console.log("error message auth", error.message);
+    return error.message
   }
 };
 
 const logoutFromApp = async () => {
   try {
-    await signOut(auth);
+    const response = await signOut(auth);
+    return response
   } catch (error) {
-    console.log(error);
+    return error.message
   }
 };
 
@@ -67,16 +64,19 @@ const loginByGoogle = async () => {
     const errorMessage = error.message;
     const email = error.customData.email;
     const credential = GoogleAuthProvider.credentialFromError(error);
+    return errorMessage
   }
 };
 const loginByGithub = async () => {
   try {
     const response = await signInWithPopup(auth, providerGithub);
     const user = response.user;
+    return user
   } catch (error) {
     console.log(error);
     const errorCode = error.code;
     const errorMessage = error.message;
+    return errorMessage
   }
 };
 

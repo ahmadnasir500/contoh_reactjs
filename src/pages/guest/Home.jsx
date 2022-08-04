@@ -44,7 +44,7 @@ const HomePage = () => {
               type="text"
               placeholder="Search surah"
               size="lg"
-              className="rounded-quran input-background border-quran"
+              className="rounded-quran input-background border-quran text-white"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />

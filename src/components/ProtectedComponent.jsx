@@ -6,16 +6,14 @@ import LoadingSpinner from "./Spinner";
 const ProtectedComponent = ({ children }) => {
   const navigate = useNavigate();
   const [user, isLoading] = useAuthState(auth);
-
   useEffect(() => {
     if (!user) {
       navigate("/login");
-      return;
     }
   }, [user, navigate]);
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return (<LoadingSpinner />);
   } else {
     return children;
   }
