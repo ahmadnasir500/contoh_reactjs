@@ -13,7 +13,7 @@ import CareerPage from "./pages/user/Career";
 import Blog from "./pages/user/Blog";
 import AddEditBlog from "./pages/user/AddEditBlog";
 import DetailBlog from "./pages/user/DetailBlog";
-import ProtectedComponent from "./components/ProtectedComponent";
+// import ProtectedComponent from "./components/ProtectedComponent";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -31,25 +31,25 @@ root.render(
             <Route
               path="/surah/:id"
               element={
-                <ProtectedComponent>
+//                 <ProtectedComponent>
                   <DetailSurahPage />
-                </ProtectedComponent>
+//                 </ProtectedComponent>
               }
             />
             <Route
               path="/career"
               element={
-                <ProtectedComponent>
+//                 <ProtectedComponent>
                   <CareerPage />
-                </ProtectedComponent>
+//                 </ProtectedComponent>
               }
             />
             
-            <Route path="/user" element={<ProtectedComponent><DetailUser /></ProtectedComponent>} />
-            <Route path="/blog" element={<ProtectedComponent><Blog /></ProtectedComponent>} />
-            <Route path="/create" element={<ProtectedComponent><AddEditBlog /></ProtectedComponent>} />
-            <Route path="/update/:id" element={<ProtectedComponent><AddEditBlog /></ProtectedComponent>} />
-            <Route path="/detail/:id" element={<ProtectedComponent><DetailBlog /></ProtectedComponent>} />
+            <Route path="/user" element={<DetailUser />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/create" element={<AddEditBlog />} />
+            <Route path="/update/:id" element={<AddEditBlog />} />
+            <Route path="/detail/:id" element={<DetailBlog />} />
           </Route>
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
